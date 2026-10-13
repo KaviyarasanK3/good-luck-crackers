@@ -1,0 +1,597 @@
+<!doctype html>
+<html lang="ta">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>GOOD LUCK CRACKERS | Maraneri, Sivakasi</title>
+    <style>
+        :root {
+            --red: #8b1010;
+            --gold: #f7c84b;
+            --ink: #251717
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            margin: 0;
+            background: #fff8ed;
+            color: var(--ink);
+            font-family: Arial, 'Noto Sans Tamil', sans-serif
+        }
+
+        .hero {
+            background: linear-gradient(130deg, #4c0808, #a51e12 55%, #321010);
+            color: white;
+            text-align: center;
+            padding: 24px 14px;
+            border-bottom: 5px solid var(--gold)
+        }
+
+        .hero h1 {
+            margin: 0;
+            font-size: clamp(25px, 6vw, 44px);
+            letter-spacing: 1px
+        }
+
+        .hero p {
+            margin: 8px 0
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--gold);
+            color: #3b0a0a;
+            border-radius: 20px;
+            padding: 7px 14px;
+            font-weight: bold
+        }
+
+        .wrap {
+            max-width: 1050px;
+            margin: auto;
+            padding: 14px
+        }
+
+        .notice {
+            background: #fff0bf;
+            border: 1px solid #edce67;
+            padding: 12px;
+            border-radius: 10px;
+            margin: 12px 0;
+            font-size: 14px
+        }
+
+        .tools {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin: 12px 0
+        }
+
+        .tools input {
+            flex: 1;
+            min-width: 170px;
+            padding: 12px;
+            border: 1px solid #c9b8a3;
+            border-radius: 8px;
+            font-size: 16px
+        }
+
+        .summary {
+            background: white;
+            border: 1px solid #ead7c0;
+            border-radius: 10px;
+            padding: 12px;
+            margin: 12px 0;
+            display: flex;
+            gap: 12px;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            font-weight: bold
+        }
+
+        .tablebox {
+            overflow-x: auto;
+            background: white;
+            border-radius: 10px;
+            border: 1px solid #ead7c0
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 650px
+        }
+
+        th {
+            background: #7e1111;
+            color: white;
+            position: sticky;
+            top: 0
+        }
+
+        th,
+        td {
+            padding: 9px 8px;
+            border-bottom: 1px solid #eadfd3;
+            text-align: left;
+            font-size: 14px
+        }
+
+        td.price {
+            text-align: right;
+            white-space: nowrap
+        }
+
+        .old {
+            text-decoration: line-through;
+            color: #8c7777
+        }
+
+        .offer {
+            color: #13743b;
+            font-weight: bold
+        }
+
+        .qty {
+            width: 48px;
+            padding: 8px 2px;
+            border: 1px solid #cbb9a3;
+            border-radius: 6px;
+            font-size: 16px;
+            text-align: center;
+            appearance: textfield;
+            -moz-appearance: textfield
+        }
+
+        .qty::-webkit-inner-spin-button,
+        .qty::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0
+        }
+
+        .qtyctrl {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            white-space: nowrap
+        }
+
+        .qtybtn {
+            width: 38px;
+            height: 38px;
+            border: 0;
+            border-radius: 8px;
+            font-size: 24px;
+            font-weight: bold;
+            line-height: 1;
+            cursor: pointer;
+            color: white;
+            background: #167a43;
+            touch-action: manipulation
+        }
+
+        .qtybtn.minus {
+            background: #8b1010
+        }
+
+        .qtybtn:focus-visible {
+            outline: 3px solid #f7c84b;
+            outline-offset: 2px
+        }
+
+        .btn {
+            background: #167a43;
+            color: white;
+            border: 0;
+            border-radius: 9px;
+            padding: 13px 16px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer
+        }
+
+        .form {
+            background: white;
+            padding: 16px;
+            border-radius: 12px;
+            border: 1px solid #ead7c0;
+            margin: 16px 0
+        }
+
+        .form h2 {
+            margin-top: 0
+        }
+        .out-stock { display:inline-block; margin-top:5px; padding:4px 8px; border-radius:6px; background:#ffe0e0; color:#a00000; font-size:12px; font-weight:bold }
+        .stock-admin-row { display:flex; align-items:center; gap:10px; padding:9px 4px; border-bottom:1px solid #eadfd3 }
+        .stock-admin-row input { width:20px; height:20px }
+        .stock-admin-row label { flex:1 }
+
+        .fields {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px
+        }
+
+        .fields input,
+        .fields textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cbb9a3;
+            border-radius: 7px;
+            font-size: 16px
+        }
+
+        .fields textarea {
+            min-height: 75px
+        }
+
+        .foot {
+            text-align: center;
+            padding: 22px;
+            background: #351010;
+            color: white;
+            margin-top: 20px
+        }
+
+        .small {
+            font-size: 12px;
+            color: #6e5c4c
+        }
+
+        @media(max-width:550px) {
+            .wrap {
+                padding: 9px
+            }
+
+            th,
+            td {
+                padding: 8px 6px
+            }
+
+            .hero {
+                padding: 20px 10px
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="hero">
+        <div class="badge">80% DISCOUNT</div>
+        <h1>🎆 GOOD LUCK CRACKERS 🎆</h1>
+        <p>Maraneri, Sivakasi – 626124</p>
+        <p>Wholesale & Retail | Festival Special Offers</p>
+        <p>📞 S. Karthik: +91 9994725748</p>
+    </header>
+    <main class="wrap">
+        <div class="notice"><b>விலை குறிப்பு:</b> விலைப்பட்டியலில் உள்ள அசல் விலையில் 80% தள்ளுபடி கணக்கிட்டு, மீதமுள்ள
+            20% தொகையை சலுகை விலையாகக் காட்டுகிறோம். Gift Box விலைகள் பட்டியலில் உள்ள நிர்ணய விலைகளாகவே காட்டப்படும்.
+            ஆர்டர் உறுதிப்படுத்துவதற்கு முன் கடையுடன் விலையைச் சரிபார்க்கவும்.</div>
+        <div class="tools"><button class="btn" id="stockAdminBtn" type="button">🔒 கையிருப்பு மாற்றம்</button></div>
+        <section class="form" id="stockAdminPanel" hidden>
+            <h2>📦 கையிருப்பு நிர்வாகம்</h2>
+            <p class="small">கடையில் இல்லாத பொருட்களைத் தேர்வு செய்து சேமிக்கவும். இந்த மாற்றங்கள் இந்த browser/device-ல் மட்டும் சேமிக்கப்படும்.</p>
+            <input id="stockAdminSearch" style="width:100%;padding:12px;border:1px solid #cbb9a3;border-radius:7px;font-size:16px" placeholder="பொருளின் பெயரைத் தேடுங்கள்">
+            <div id="stockAdminList" style="max-height:360px;overflow:auto;margin:12px 0"></div>
+            <button class="btn" id="saveStockBtn" type="button">கையிருப்பைச் சேமிக்கவும்</button>
+            <button class="btn" id="closeStockBtn" type="button" style="background:#8b1010">மூடவும்</button>
+        </section>
+        <div class="tools"><input id="search" placeholder="பொருளின் பெயரைத் தேடுங்கள் / Search items"><input
+                id="category" placeholder="வகை தேடல் (எ.கா. Rocket)"></div>
+        <div class="summary"><span>தேர்ந்தெடுத்த பொருட்கள்: <b id="count">0</b></span><span>அளவுகளைத் தேர்ந்தெடுத்த
+                பிறகு பில் கீழே காட்டப்படும்</span></div>
+        <div class="tablebox">
+            <table>
+                <thead>
+                    <tr>
+                        <th>எண்</th>
+                        <th>பொருள்</th>
+                        <th>அசல் விலை</th>
+                        <th>சலுகை விலை</th>
+                        <th>அளவு</th>
+                        <th>தொகை</th>
+                    </tr>
+                </thead>
+                <tbody id="products"></tbody>
+            </table>
+        </div>
+        <section class="form" id="bill">
+            <h2>🧾 உங்கள் ஆர்டர் பில்</h2>
+            <div class="small">நீங்கள் தேர்ந்தெடுத்த பொருட்கள் மட்டும் இங்கே காட்டப்படும்.</div>
+            <div class="tablebox">
+                <table style="min-width:520px">
+                    <thead>
+                        <tr>
+                            <th>எண்</th>
+                            <th>பொருள்</th>
+                            <th>அளவு</th>
+                            <th>விலை</th>
+                            <th>தொகை</th>
+                        </tr>
+                    </thead>
+                    <tbody id="billRows">
+                        <tr>
+                            <td colspan="5" style="text-align:center">இன்னும் பொருட்கள் தேர்ந்தெடுக்கவில்லை</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="summary" style="margin-top:12px"><span>மொத்த அளவு: <b id="billCount">0</b></span><span>GRAND
+                    TOTAL: ₹<b id="total">0.00</b></span></div>
+        </section>
+        <section class="form">
+            <h2>🛒 ஆர்டர் விவரங்கள்</h2>
+            <div class="fields"><input id="customer" placeholder="வாடிக்கையாளர் பெயர் *"><input id="phone"
+                    inputmode="tel" placeholder="மொபைல் எண் *"><input id="address" placeholder="முகவரி / ஊர்"><textarea
+                    id="notes" placeholder="கூடுதல் குறிப்புகள்"></textarea></div>
+            <p class="small">இது ஆர்டர் விசாரணை மட்டுமே. WhatsApp-ல் அனுப்பிய பிறகு கடையுடன் விலை, கிடைக்கும் இருப்பு,
+                டெலிவரி ஆகியவற்றை உறுதி செய்யவும்.</p><button class="btn" id="order">WhatsApp மூலம் ஆர்டர்
+                அனுப்பவும்</button>
+        </section>
+    </main>
+    <footer class="foot"><b>GOOD LUCK CRACKERS</b>
+        <p>Maraneri, Sivakasi</p>
+        <p>S. Karthik · +91 9994725748</p>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script>
+        const items = [{ "id": 1, "name": "2¾\" kuruvi", "price": 40, "offer": 8.0, "unit": "PKT", "fixed": false }, { "id": 2, "name": "3½\" Lakshmi", "price": 60, "offer": 12.0, "unit": "PKT", "fixed": false }, { "id": 3, "name": "4\" Lakshmi", "price": 100, "offer": 20.0, "unit": "PKT", "fixed": false }, { "id": 4, "name": "4\" Lakshmi deluxe", "price": 175, "offer": 35.0, "unit": "PKT", "fixed": false }, { "id": 5, "name": "5\" Jallikattu", "price": 300, "offer": 60.0, "unit": "PKT", "fixed": false }, { "id": 6, "name": "5\" elephant deluxe", "price": 375, "offer": 75.0, "unit": "PKT", "fixed": false }, { "id": 7, "name": "6\" Jurassic Park", "price": 425, "offer": 85.0, "unit": "PKT", "fixed": false }, { "id": 8, "name": "6\" lionking deluxe", "price": 500, "offer": 100.0, "unit": "PKT", "fixed": false }, { "id": 9, "name": "F/P Big (10pcs)", "price": 325, "offer": 65.0, "unit": "Box", "fixed": false }, { "id": 10, "name": "F/P Special (10pcs)", "price": 500, "offer": 100.0, "unit": "Box", "fixed": false }, { "id": 11, "name": "F/P Asoka (10pcs)", "price": 550, "offer": 110.0, "unit": "Box", "fixed": false }, { "id": 12, "name": "F/P Deluxe (5pcs)", "price": 750, "offer": 150.0, "unit": "Box", "fixed": false }, { "id": 13, "name": "F/P Super deluxe (2pcs)", "price": 650, "offer": 130.0, "unit": "Box", "fixed": false }, { "id": 14, "name": "Colour koti", "price": 1000, "offer": 200.0, "unit": "Box", "fixed": false }, { "id": 15, "name": "F/P colour koti Deluxe", "price": 1500, "offer": 300.0, "unit": "Box", "fixed": false }, { "id": 16, "name": "Mega Jumbo Pack", "price": 2000, "offer": 400.0, "unit": "Box", "fixed": false }, { "id": 17, "name": "Ground chakker Big", "price": 175, "offer": 35.0, "unit": "Box", "fixed": false }, { "id": 18, "name": "Ground chakker Asoka", "price": 300, "offer": 60.0, "unit": "Box", "fixed": false }, { "id": 19, "name": "G/C special", "price": 400, "offer": 80.0, "unit": "Box", "fixed": false }, { "id": 20, "name": "G/C deluxe", "price": 600, "offer": 120.0, "unit": "Box", "fixed": false }, { "id": 21, "name": "Spinner special", "price": 550, "offer": 110.0, "unit": "Box", "fixed": false }, { "id": 22, "name": "Spinner Deluxe", "price": 800, "offer": 160.0, "unit": "Box", "fixed": false }, { "id": 23, "name": "Lotus 4x4 (5pcs) Special", "price": 750, "offer": 150.0, "unit": "Box", "fixed": false }, { "id": 24, "name": "Disco wheel (5pcs)", "price": 500, "offer": 100.0, "unit": "Box", "fixed": false }, { "id": 25, "name": "Wire chakker", "price": 800, "offer": 160.0, "unit": "Box", "fixed": false }, { "id": 26, "name": "Ninja chakker (Ayyan) (2pcs)", "price": 750, "offer": 150.0, "unit": "Box", "fixed": false }, { "id": 27, "name": "Red Bijili", "price": 175, "offer": 35.0, "unit": "PKT", "fixed": false }, { "id": 28, "name": "Gold Stripped Bijili", "price": 200, "offer": 40.0, "unit": "PKT", "fixed": false }, { "id": 29, "name": "28 chorsa", "price": 80, "offer": 16.0, "unit": "PKT", "fixed": false }, { "id": 30, "name": "56 Chorsa", "price": 160, "offer": 32.0, "unit": "PKT", "fixed": false }, { "id": 31, "name": "0.1k", "price": 180, "offer": 36.0, "unit": "PKT", "fixed": false }, { "id": 32, "name": "1k", "price": 800, "offer": 160.0, "unit": "Box", "fixed": false }, { "id": 33, "name": "1k premium", "price": 1600, "offer": 320.0, "unit": "Box", "fixed": false }, { "id": 34, "name": "2k", "price": 1700, "offer": 340.0, "unit": "Box", "fixed": false }, { "id": 35, "name": "5k", "price": 4500, "offer": 900.0, "unit": "Box", "fixed": false }, { "id": 36, "name": "10k", "price": 9000, "offer": 1800.0, "unit": "Box", "fixed": false }, { "id": 37, "name": "candle", "price": 375, "offer": 75.0, "unit": "Box", "fixed": false }, { "id": 38, "name": "Amazing Pencil", "price": 400, "offer": 80.0, "unit": "Box", "fixed": false }, { "id": 39, "name": "1½\" Twinkling Star", "price": 100, "offer": 20.0, "unit": "Box", "fixed": false }, { "id": 40, "name": "4\" Twinkling star", "price": 250, "offer": 50.0, "unit": "Box", "fixed": false }, { "id": 41, "name": "¼ KG Special Bomb", "price": 230, "offer": 46.0, "unit": "Box", "fixed": false }, { "id": 42, "name": "½ KG Special Bomb", "price": 460, "offer": 92.0, "unit": "Box", "fixed": false }, { "id": 43, "name": "1 KG Special Bomb", "price": 920, "offer": 184.0, "unit": "Box", "fixed": false }, { "id": 44, "name": "Magic Show Currency Bomb", "price": 1100, "offer": 220.0, "unit": "Box", "fixed": false }, { "id": 45, "name": "Best Rider (5pcs)", "price": 500, "offer": 100.0, "unit": "Box", "fixed": false }, { "id": 46, "name": "Hydro Bomb", "price": 300, "offer": 60.0, "unit": "Box", "fixed": false }, { "id": 47, "name": "Classic Bomb", "price": 600, "offer": 120.0, "unit": "Box", "fixed": false }, { "id": 48, "name": "Agni Bomb", "price": 900, "offer": 180.0, "unit": "Box", "fixed": false }, { "id": 49, "name": "Digital Bomb", "price": 1000, "offer": 200.0, "unit": "Box", "fixed": false }, { "id": 50, "name": "Cylinder Bomb", "price": 800, "offer": 160.0, "unit": "Box", "fixed": false }, { "id": 51, "name": "Rocket Bomb", "price": 325, "offer": 65.0, "unit": "Box", "fixed": false }, { "id": 52, "name": "Whistling Rocket", "price": 700, "offer": 140.0, "unit": "Box", "fixed": false }, { "id": 53, "name": "3 sound Rocket", "price": 800, "offer": 160.0, "unit": "Box", "fixed": false }, { "id": 54, "name": "Rainbow Rain", "price": 425, "offer": 85.0, "unit": "Box", "fixed": false }, { "id": 55, "name": "Peacock feather", "price": 500, "offer": 100.0, "unit": "Box", "fixed": false }, { "id": 56, "name": "Golden feather", "price": 550, "offer": 110.0, "unit": "Box", "fixed": false }, { "id": 57, "name": "Tin Beer", "price": 400, "offer": 80.0, "unit": "Box", "fixed": false }, { "id": 58, "name": "Magic Peacock", "price": 550, "offer": 110.0, "unit": "Box", "fixed": false }, { "id": 59, "name": "Dancing Peacock", "price": 600, "offer": 120.0, "unit": "Box", "fixed": false }, { "id": 60, "name": "Bada Peacock", "price": 1875, "offer": 375.0, "unit": "Box", "fixed": false }, { "id": 61, "name": "Lemon tree (Ayyan)", "price": 750, "offer": 150.0, "unit": "Box", "fixed": false }, { "id": 62, "name": "High voltage (Rudhra)", "price": 1050, "offer": 210.0, "unit": "Box", "fixed": false }, { "id": 63, "name": "Pop and Pop (Rudhra)", "price": 1100, "offer": 220.0, "unit": "Box", "fixed": false }, { "id": 64, "name": "Big Bang (2 step)", "price": 750, "offer": 150.0, "unit": "Box", "fixed": false }, { "id": 65, "name": "Karaoke night (2 step)", "price": 750, "offer": 150.0, "unit": "Box", "fixed": false }, { "id": 66, "name": "Dr. Pepper (2 step)", "price": 750, "offer": 150.0, "unit": "Box", "fixed": false }, { "id": 67, "name": "Jazz Music (2 step)", "price": 750, "offer": 150.0, "unit": "Box", "fixed": false }, { "id": 68, "name": "Party time (5pcs)", "price": 1000, "offer": 200.0, "unit": "Box", "fixed": false }, { "id": 69, "name": "Bingo Music (5pcs)", "price": 1000, "offer": 200.0, "unit": "Box", "fixed": false }, { "id": 70, "name": "Mr. Big (5pcs)", "price": 1000, "offer": 200.0, "unit": "Box", "fixed": false }, { "id": 71, "name": "Tooty Fruity (5pcs)", "price": 1000, "offer": 200.0, "unit": "Box", "fixed": false }, { "id": 72, "name": "Mozito (2pcs)", "price": 1000, "offer": 200.0, "unit": "Box", "fixed": false }, { "id": 73, "name": "Cock fight (2pcs)", "price": 1000, "offer": 200.0, "unit": "Box", "fixed": false }, { "id": 74, "name": "Pride Popcorn (2pcs)", "price": 1000, "offer": 200.0, "unit": "Box", "fixed": false }, { "id": 75, "name": "Tri colour fountain (5pcs)", "price": 1200, "offer": 240.0, "unit": "Box", "fixed": false }, { "id": 76, "name": "Chocolate (3 variety)", "price": 300, "offer": 60.0, "unit": "Box", "fixed": false }, { "id": 77, "name": "Cricket Bat", "price": 500, "offer": 100.0, "unit": "Box", "fixed": false }, { "id": 78, "name": "Helicopter", "price": 450, "offer": 90.0, "unit": "Box", "fixed": false }, { "id": 79, "name": "Drone", "price": 600, "offer": 120.0, "unit": "Box", "fixed": false }, { "id": 80, "name": "Flying Butterfly", "price": 400, "offer": 80.0, "unit": "Box", "fixed": false }, { "id": 81, "name": "Pambaram", "price": 550, "offer": 110.0, "unit": "Box", "fixed": false }, { "id": 82, "name": "Photo flash", "price": 300, "offer": 60.0, "unit": "Box", "fixed": false }, { "id": 83, "name": "Lollipop", "price": 750, "offer": 150.0, "unit": "Box", "fixed": false }, { "id": 84, "name": "Selfie Stick", "price": 450, "offer": 90.0, "unit": "Box", "fixed": false }, { "id": 85, "name": "Colour Smoke", "price": 600, "offer": 120.0, "unit": "Box", "fixed": false }, { "id": 86, "name": "Paw Patrol", "price": 600, "offer": 120.0, "unit": "Box", "fixed": false }, { "id": 87, "name": "Shinchan", "price": 600, "offer": 120.0, "unit": "Box", "fixed": false }, { "id": 88, "name": "Spiderman", "price": 600, "offer": 120.0, "unit": "Box", "fixed": false }, { "id": 89, "name": "Sword warrior", "price": 550, "offer": 110.0, "unit": "Box", "fixed": false }, { "id": 90, "name": "Rollcap (10pkt)", "price": 500, "offer": 100.0, "unit": "Box", "fixed": false }, { "id": 91, "name": "Ring gun", "price": 500, "offer": 100.0, "unit": "Box", "fixed": false }, { "id": 92, "name": "Simba (3 Pcs)", "price": 625, "offer": 125.0, "unit": "Box", "fixed": false }, { "id": 93, "name": "Tiger (3 Pcs)", "price": 625, "offer": 125.0, "unit": "Box", "fixed": false }, { "id": 94, "name": "Love (3 Pcs)", "price": 625, "offer": 125.0, "unit": "Box", "fixed": false }, { "id": 95, "name": "Teddy (3 Pcs)", "price": 625, "offer": 125.0, "unit": "Box", "fixed": false }, { "id": 96, "name": "Motlu Patlu Icone (2 Pcs)", "price": 1000, "offer": 200.0, "unit": "Box", "fixed": false }, { "id": 97, "name": "Darling", "price": 1250, "offer": 250.0, "unit": "Box", "fixed": false }, { "id": 98, "name": "Happy Holi", "price": 1250, "offer": 250.0, "unit": "Box", "fixed": false }, { "id": 99, "name": "Mango Tango", "price": 1250, "offer": 250.0, "unit": "Box", "fixed": false }, { "id": 100, "name": "Star Bust", "price": 1250, "offer": 250.0, "unit": "Box", "fixed": false }, { "id": 101, "name": "Jolly Train", "price": 1750, "offer": 350.0, "unit": "Box", "fixed": false }, { "id": 102, "name": "Chotta fancy", "price": 175, "offer": 35.0, "unit": "Box", "fixed": false }, { "id": 103, "name": "Sky Shots (5pcs)", "price": 300, "offer": 60.0, "unit": "Box", "fixed": false }, { "id": 104, "name": "Penta", "price": 750, "offer": 150.0, "unit": "Box", "fixed": false }, { "id": 105, "name": "7 Shot", "price": 450, "offer": 90.0, "unit": "Box", "fixed": false }, { "id": 106, "name": "Siren (Big)", "price": 800, "offer": 160.0, "unit": "Box", "fixed": false }, { "id": 107, "name": "1¾\" fancy Pipe", "price": 350, "offer": 70.0, "unit": "Box", "fixed": false }, { "id": 108, "name": "2\" Pipe (5variety)", "price": 400, "offer": 80.0, "unit": "Box", "fixed": false }, { "id": 109, "name": "2\" crackling (3pcs)", "price": 1150, "offer": 230.0, "unit": "Box", "fixed": false }, { "id": 110, "name": "3½\" fancy crackling", "price": 1250, "offer": 250.0, "unit": "Box", "fixed": false }, { "id": 111, "name": "4\" nayagara (Premium)", "price": 1750, "offer": 350.0, "unit": "Box", "fixed": false }, { "id": 112, "name": "4\" nayagara (2pcs)", "price": 3500, "offer": 700.0, "unit": "Box", "fixed": false }, { "id": 113, "name": "4\" double Ball", "price": 2750, "offer": 550.0, "unit": "Box", "fixed": false }, { "id": 114, "name": "5\" festival 3D crackling (2pcs)", "price": 5500, "offer": 1100.0, "unit": "Box", "fixed": false }, { "id": 115, "name": "5\" nayagara multicolour (Rudra) (2pcs)", "price": 6500, "offer": 1300.0, "unit": "Box", "fixed": false }, { "id": 116, "name": "10 shooter Bullet", "price": 2500, "offer": 500.0, "unit": "Box", "fixed": false }, { "id": 117, "name": "12 shot", "price": 800, "offer": 160.0, "unit": "Box", "fixed": false }, { "id": 118, "name": "30 shot multicolour", "price": 1450, "offer": 350.0, "unit": "Box", "fixed": false }, { "id": 119, "name": "30 Shot multicolour Premium", "price": 2000, "offer": 400.0, "unit": "Box", "fixed": false }, { "id": 120, "name": "60 shot", "price": 3750, "offer": 750.0, "unit": "Box", "fixed": false }, { "id": 121, "name": "120 shot", "price": 8000, "offer": 1600.0, "unit": "Box", "fixed": false }, { "id": 122, "name": "240 Shot", "price": 16000, "offer": 3200.0, "unit": "Box", "fixed": false }, { "id": 123, "name": "10x10 shot (Pandiyan)", "price": 18000, "offer": 3600.0, "unit": "Box", "fixed": false }, { "id": 124, "name": "7cm electric", "price": 50, "offer": 10.0, "unit": "Box", "fixed": false }, { "id": 125, "name": "7cm colour", "price": 60, "offer": 12.0, "unit": "Box", "fixed": false }, { "id": 126, "name": "7cm Green", "price": 70, "offer": 14.0, "unit": "Box", "fixed": false }, { "id": 127, "name": "7cm red", "price": 80, "offer": 16.0, "unit": "Box", "fixed": false }, { "id": 128, "name": "10cm electric", "price": 90, "offer": 18.0, "unit": "Box", "fixed": false }, { "id": 129, "name": "10cm Colour", "price": 100, "offer": 20.0, "unit": "Box", "fixed": false }, { "id": 130, "name": "10cm Green", "price": 110, "offer": 22.0, "unit": "Box", "fixed": false }, { "id": 131, "name": "10cm red", "price": 120, "offer": 24.0, "unit": "Box", "fixed": false }, { "id": 132, "name": "12cm electric", "price": 140, "offer": 28.0, "unit": "Box", "fixed": false }, { "id": 133, "name": "12cm Colour", "price": 150, "offer": 30.0, "unit": "Box", "fixed": false }, { "id": 134, "name": "12cm Green", "price": 160, "offer": 32.0, "unit": "Box", "fixed": false }, { "id": 135, "name": "12cm red", "price": 170, "offer": 34.0, "unit": "Box", "fixed": false }, { "id": 136, "name": "15cm electric", "price": 210, "offer": 42.0, "unit": "Box", "fixed": false }, { "id": 137, "name": "15cm Colour", "price": 220, "offer": 44.0, "unit": "Box", "fixed": false }, { "id": 138, "name": "15cm Green", "price": 230, "offer": 46.0, "unit": "Box", "fixed": false }, { "id": 139, "name": "15cm red", "price": 240, "offer": 48.0, "unit": "Box", "fixed": false }, { "id": 140, "name": "30cm electric", "price": 210, "offer": 42.0, "unit": "Box", "fixed": false }, { "id": 141, "name": "30cm Colour", "price": 220, "offer": 44.0, "unit": "Box", "fixed": false }, { "id": 142, "name": "30cm Green", "price": 230, "offer": 46.0, "unit": "Box", "fixed": false }, { "id": 143, "name": "30cm red", "price": 240, "offer": 48.0, "unit": "Box", "fixed": false }, { "id": 144, "name": "50cm electric", "price": 850, "offer": 170.0, "unit": "Box", "fixed": false }, { "id": 145, "name": "50cm Colour", "price": 1050, "offer": 210.0, "unit": "Box", "fixed": false }, { "id": 146, "name": "Rotating sparklers", "price": 1000, "offer": 200.0, "unit": "Box", "fixed": false }, { "id": 147, "name": "Gift Box – 20 items", "price": 350, "offer": 350, "unit": "Gift", "fixed": true }, { "id": 148, "name": "Gift Box – 30 items", "price": 500, "offer": 500, "unit": "Gift", "fixed": true }, { "id": 149, "name": "Gift Box – 40 items", "price": 700, "offer": 700, "unit": "Gift", "fixed": true }, { "id": 150, "name": "Gift Box – 50 items", "price": 850, "offer": 850, "unit": "Gift", "fixed": true }];
+        // Shared cloud stock sync. Paste your deployed Google Apps Script URL here.
+        const STOCK_API_URL = 'PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE';
+        const STOCK_KEY = 'goodLuckCrackersOutOfStock_v1';
+        let outOfStock = {};
+        try { outOfStock = JSON.parse(localStorage.getItem(STOCK_KEY) || '{}') || {}; } catch (_) { outOfStock = {}; }
+        function sharedStockRequest(params) {
+            return new Promise((resolve, reject) => {
+                if (!STOCK_API_URL || STOCK_API_URL.includes('PASTE_YOUR_')) {
+                    reject(new Error('Shared stock sync is not connected yet.'));
+                    return;
+                }
+                const callback = 'stockCb_' + Date.now() + '_' + Math.floor(Math.random()*10000);
+                const script = document.createElement('script');
+                const timer = setTimeout(() => { cleanup(); reject(new Error('Cloud connection timed out.')); }, 12000);
+                function cleanup(){ clearTimeout(timer); delete window[callback]; script.remove(); }
+                window[callback] = data => { cleanup(); resolve(data); };
+                script.onerror = () => { cleanup(); reject(new Error('Cloud connection failed.')); };
+                script.src = STOCK_API_URL + (STOCK_API_URL.includes('?') ? '&' : '?') +
+                    new URLSearchParams({...params, callback}).toString();
+                document.body.appendChild(script);
+            });
+        }
+        async function loadSharedStock() {
+            try {
+                const data = await sharedStockRequest({action:'load'});
+                if (data && data.ok && data.stock) {
+                    outOfStock = data.stock;
+                    localStorage.setItem(STOCK_KEY, JSON.stringify(outOfStock));
+                    render();
+                }
+            } catch (_) { /* Local copy remains available until cloud sync is connected. */ }
+        }
+        const tbody = document.getElementById('products');
+        const money = n => Number(n).toLocaleString('en-IN', { maximumFractionDigits: 2, minimumFractionDigits: 2 });
+        const categoryHeadings = [
+            [1, 'Single Sound Crackers'], [9, 'Flower Pots'], [17, 'Ground Chakker Items'],
+            [23, 'Special Chakker Items'], [27, 'Bijili Crackers'], [31, 'Premium Crackers'],
+            [37, 'Pencil & Twinkling Star'], [41, 'Special Bomb'], [46, 'Atom Bombs'],
+            [51, 'Rocket'], [54, 'Fancy Fountain'], [62, 'Multi Colour Fountain'],
+            [76, 'Kutties Special'], [92, '2026 New Arrivals'], [102, 'Fancy Shots'],
+            [107, 'Fancy Pipe'], [116, 'Repeating Shots'], [124, 'Sparklers'],
+            [147, 'Gift Boxes — Fixed Price']
+        ];
+        function render() { const q = (document.getElementById('search').value + ' ' + document.getElementById('category').value).trim().toLowerCase(); tbody.innerHTML = ''; let lastHeading = ''; items.filter(x => !q || (x.name + ' ' + x.id).toLowerCase().includes(q) || categoryHeadings.some(h => x.id >= h[0] && (categoryHeadings.find(n => n[0] > h[0])?.[0] ?? 151) > x.id && h[1].toLowerCase().includes(q))).forEach(x => { const heading = [...categoryHeadings].reverse().find(h => x.id >= h[0]); if (heading && heading[1] !== lastHeading) { const hr = document.createElement('tr'); hr.className = 'category-heading'; hr.innerHTML = `<td colspan="6" style="background:#fff0bf;color:#7e1111;font-weight:bold;font-size:15px;padding:10px 8px;">${escapeHtml(heading[1])}</td>`; tbody.appendChild(hr); lastHeading = heading[1]; } const unavailable = !!outOfStock[x.id]; const tr = document.createElement('tr'); tr.innerHTML = `<td>${x.id}</td><td>${escapeHtml(x.name)}${x.fixed ? ' <span class="small">(நிர்ணய விலை)</span>' : ''}${unavailable ? '<br><span class="out-stock">OUT OF STOCK / இருப்பு இல்லை</span>' : ''}</td><td class="price ${x.fixed ? '' : 'old'}">₹${money(x.price)}</td><td class="price offer">₹${money(x.offer)}</td><td>${unavailable ? '<span class="out-stock">கிடைக்காது</span>' : `<div class="qtyctrl"><button type="button" class="qtybtn minus" data-change="-1" data-id="${x.id}" aria-label="${escapeHtml(x.name)} அளவை குறைக்க">−</button><input class="qty" type="number" min="0" max="999" step="1" value="0" aria-label="${escapeHtml(x.name)} அளவு" data-id="${x.id}"><button type="button" class="qtybtn plus" data-change="1" data-id="${x.id}" aria-label="${escapeHtml(x.name)} அளவை அதிகரிக்க">+</button></div>`}</td><td class="price" id="amt-${x.id}">₹0.00</td>`; tbody.appendChild(tr) }); update() }
+        function escapeHtml(s) { return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])) }
+        function update() { let count = 0, total = 0, rows = []; document.querySelectorAll('.qty').forEach(inp => { const x = items.find(a => a.id === Number(inp.dataset.id)); let q = Math.max(0, Math.min(999, parseInt(inp.value) || 0)); const amount = q * x.offer; count += q; total += amount; const cell = document.getElementById('amt-' + x.id); if (cell) cell.textContent = '₹' + money(amount); if (q > 0) rows.push(`<tr><td>${x.id}</td><td>${escapeHtml(x.name)}</td><td>${q} ${x.unit === 'PKT' ? 'packet' : x.unit === 'Gift' ? 'set' : 'box'}</td><td>₹${money(x.offer)}</td><td>₹${money(amount)}</td></tr>`) }); document.getElementById('count').textContent = count; document.getElementById('billCount').textContent = count; document.getElementById('total').textContent = money(total); document.getElementById('billRows').innerHTML = rows.length ? rows.join('') : '<tr><td colspan="5" style="text-align:center">இன்னும் பொருட்கள் தேர்ந்தெடுக்கவில்லை</td></tr>' }
+        document.getElementById('search').addEventListener('input', render); document.getElementById('category').addEventListener('input', render); tbody.addEventListener('input', update); tbody.addEventListener('click', e => { const b = e.target.closest('button[data-change]'); if (!b) return; const inp = tbody.querySelector(`.qty[data-id="${b.dataset.id}"]`); if (!inp) return; const current = parseInt(inp.value) || 0; inp.value = Math.max(0, Math.min(999, current + Number(b.dataset.change))); update() });
+        function buildOrderPdf(name, phone, address, notes, rows, grand) {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF({ unit: 'pt', format: 'a4' });
+            const marginX = 40;
+            let y = 50;
+            doc.setFont('helvetica', 'bold'); doc.setFontSize(16);
+            doc.text('GOOD LUCK CRACKERS', marginX, y); y += 18;
+            doc.setFont('helvetica', 'normal'); doc.setFontSize(10);
+            doc.text('Maraneri, Sivakasi - 626124 | S. Karthik: +91 9994725748', marginX, y); y += 24;
+            doc.setDrawColor(139, 16, 16); doc.setLineWidth(1); doc.line(marginX, y, 555, y); y += 20;
+            doc.setFont('helvetica', 'bold'); doc.setFontSize(12); doc.text('Order Enquiry', marginX, y); y += 18;
+            doc.setFont('helvetica', 'normal'); doc.setFontSize(10);
+            doc.text(`Name: ${name}`, marginX, y); y += 14;
+            doc.text(`Phone: ${phone}`, marginX, y); y += 14;
+            doc.text(`Address: ${address || 'Not provided'}`, marginX, y); y += 20;
+            doc.setFont('helvetica', 'bold');
+            doc.text('No', marginX, y); doc.text('Item', marginX + 30, y); doc.text('Qty', marginX + 300, y); doc.text('Price', marginX + 360, y); doc.text('Amount', marginX + 440, y);
+            y += 6; doc.setLineWidth(0.5); doc.line(marginX, y, 555, y); y += 14;
+            doc.setFont('helvetica', 'normal');
+            rows.forEach(r => {
+                if (y > 770) { doc.addPage(); y = 50; }
+                doc.text(String(r.id), marginX, y);
+                doc.text(String(r.name).slice(0, 42), marginX + 30, y);
+                doc.text(r.qtyLabel, marginX + 300, y);
+                doc.text('Rs.' + money(r.price), marginX + 360, y);
+                doc.text('Rs.' + money(r.amount), marginX + 440, y);
+                y += 16;
+            });
+            y += 6; doc.line(marginX, y, 555, y); y += 20;
+            doc.setFont('helvetica', 'bold'); doc.setFontSize(12);
+            doc.text(`GRAND TOTAL: Rs.${money(grand)}`, marginX, y); y += 24;
+            doc.setFont('helvetica', 'normal'); doc.setFontSize(10);
+            doc.text(`Notes: ${notes || 'None'}`, marginX, y); y += 20;
+            doc.setFontSize(8); doc.setTextColor(120);
+            doc.text('This is an order enquiry only. Please confirm availability and final price with the shop.', marginX, y);
+            return doc;
+        }
+        const PDF_UPLOAD_API = 'https://script.google.com/macros/s/AKfycbxx2ejEKnzDN472u3vbT9__-ciJMAhiKwo7iwHoummce7W3X4BYT0Y4RK8WOHXfHxSu/exec';
+
+        document.getElementById('order').addEventListener('click', async () => {
+
+            const name = document.getElementById('customer').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const address = document.getElementById('address').value.trim();
+            const notes = document.getElementById('notes').value.trim();
+
+            if (!name || !phone) {
+                alert('தயவுசெய்து பெயர் மற்றும் மொபைல் எண்ணை உள்ளிடுங்கள்.');
+                return;
+            }
+
+            let rows = [];
+
+            document.querySelectorAll('.qty').forEach(inp => {
+                const q = parseInt(inp.value) || 0;
+
+                if (q > 0) {
+                    const x = items.find(a => a.id === Number(inp.dataset.id));
+
+                    rows.push({
+                        id: x.id,
+                        name: x.name,
+                        qtyLabel: `${q} ${x.unit === 'PKT'
+                            ? 'packet'
+                            : x.unit === 'Gift'
+                                ? 'set'
+                                : 'box'}`,
+                        price: x.offer,
+                        amount: q * x.offer
+                    });
+                }
+            });
+
+            if (!rows.length) {
+                alert('முதலில் குறைந்தது ஒரு பொருளின் அளவைத் தேர்ந்தெடுக்கவும்.');
+                return;
+            }
+
+            const grand = rows.reduce((s, r) => s + r.amount, 0);
+
+            const doc = buildOrderPdf(
+                name,
+                phone,
+                address,
+                notes,
+                rows,
+                grand
+            );
+
+            const fileName =
+                `GoodLuckCrackers_Order_${name.replace(/[^a-zA-Z0-9]/g, '_')}.pdf`;
+
+            const pdfBlob = doc.output('blob');
+            const base64 = await new Promise(resolve => {
+
+            const reader = new FileReader();
+
+                reader.onloadend = () => {
+                    resolve(
+                    reader.result.split(',')[1]
+                    );
+                };
+
+                reader.readAsDataURL(pdfBlob);
+
+            });
+            try {
+
+            const response = await fetch(
+                PDF_UPLOAD_API,
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        file: base64,
+                        fileName: fileName
+                    })
+                }
+            );
+
+            if (!response.ok) {
+                throw new Error('HTTP ' + response.status);
+            }
+
+            const result = await response.json();
+
+            console.log(result);
+
+            if (!result.success) {
+                throw new Error(result.error || 'Unknown error');
+            }
+
+            const pdfLink = result.url;
+
+                const whatsappText =
+                `GOOD LUCK CRACKERS - Order Enquiry
+
+                Customer : ${name}
+                Phone : ${phone}
+                Address : ${address || 'Not provided'}
+
+                PDF Order:
+                ${pdfLink}
+
+                Total Amount : ₹${money(grand)}
+
+                Please confirm availability and final pricing.`;
+
+                window.open(
+                    'https://wa.me/919994725748?text=' +
+                    encodeURIComponent(whatsappText),
+                    '_blank'
+                );
+
+            } catch (err) {
+
+                console.error(err);
+
+                alert(
+                    'PDF upload failed.\n\n' +
+                    err.message
+                );
+            };
+        });
+        function renderStockAdminList() {
+            const q = (document.getElementById('stockAdminSearch').value || '').trim().toLowerCase();
+            document.getElementById('stockAdminList').innerHTML = items.filter(x => !q || x.name.toLowerCase().includes(q) || String(x.id).includes(q)).map(x =>
+                `<div class="stock-admin-row"><input type="checkbox" id="stock-${x.id}" data-stock-id="${x.id}" ${outOfStock[x.id] ? 'checked' : ''}><label for="stock-${x.id}">${x.id}. ${escapeHtml(x.name)}${outOfStock[x.id] ? ' — OUT OF STOCK' : ''}</label></div>`
+            ).join('');
+        }
+        document.getElementById('stockAdminBtn').addEventListener('click', () => {
+            const pin = prompt('கையிருப்பு மாற்ற PIN உள்ளிடவும் (Default PIN: 2580)');
+            if (pin !== '2580') { if (pin !== null) alert('PIN தவறு.'); return; }
+            document.getElementById('stockAdminPanel').hidden = false;
+            renderStockAdminList();
+        });
+        document.getElementById('stockAdminSearch').addEventListener('input', renderStockAdminList);
+        document.getElementById('saveStockBtn').addEventListener('click', () => {
+            document.querySelectorAll('[data-stock-id]').forEach(box => {
+                if (box.checked) outOfStock[box.dataset.stockId] = true;
+                else delete outOfStock[box.dataset.stockId];
+            });
+            localStorage.setItem(STOCK_KEY, JSON.stringify(outOfStock));
+            render();
+            renderStockAdminList();
+            if (!STOCK_API_URL || STOCK_API_URL.includes('PASTE_YOUR_')) {
+                alert('இந்த HTML-க்கு இன்னும் Cloud Sync இணைக்கப்படவில்லை. எல்லா வாடிக்கையாளர்களுக்கும் ஒரே நேரத்தில் காட்ட Google Apps Script URL இணைக்க வேண்டும்.');
+                return;
+            }
+            sharedStockRequest({action:'save', pin:'2580', data:JSON.stringify(outOfStock)})
+                .then(result => {
+                    if (result && result.ok) alert('கையிருப்பு சேமிக்கப்பட்டது. இப்போது இதே link திறக்கும் அனைத்து வாடிக்கையாளர்களுக்கும் மாற்றம் தெரியும்.');
+                    else alert('Cloud-ல் சேமிக்க முடியவில்லை. PIN அல்லது இணைய இணைப்பைச் சரிபார்க்கவும்.');
+                })
+                .catch(() => alert('Cloud-ல் சேமிக்க முடியவில்லை. இணைய இணைப்பு மற்றும் Apps Script URL-ஐச் சரிபார்க்கவும்.'));
+        });
+        document.getElementById('closeStockBtn').addEventListener('click', () => {
+            document.getElementById('stockAdminPanel').hidden = true;
+        });
+        render();
+        loadSharedStock();
+    </script>
+</body>
+
+</html>
